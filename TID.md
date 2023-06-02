@@ -16,3 +16,6 @@
 - 2023.06.01
     - 섹션1 > 6강. Junit5 사용법과 테스트 코드 리팩토링 학습 완료
     - junit test
+- 2023.06.02
+    - 섹션1 > 7강. Junit5으로 Spring Boot 테스트하기 학습 완료
+    - UserService.saveUser 테스트 코드 작성
