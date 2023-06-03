@@ -18,4 +18,9 @@
     - junit test
 - 2023.06.02
     - 섹션1 > 7강. Junit5으로 Spring Boot 테스트하기 학습 완료
-    - UserService.saveUser 테스트 코드 작성
+        - UserService.saveUser 테스트 코드 작성
+    - 섹션1 > 8강. 유저 관련 기능 테스트 작성하기 학습 완료
+        - UserService의 나머지 메소드들의 테스트 코드 작성
+- 2023.06.03
+    - 섹션1 > 9깅. 책 관련 기능 테스트 작성하기 학습 완료
+        - BookService 테스트 코드 작성
