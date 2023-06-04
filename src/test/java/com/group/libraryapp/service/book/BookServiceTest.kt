@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.book
 
-import com.group.libraryapp.domain.book.Book
+import com.group.libraryapp.domain.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
@@ -50,7 +50,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBookTest() {
         // given
         val user = userRepository.save(User("바트", 20))
-        val book = bookRepository.save(Book("Head First Java"))
+        val book = bookRepository.save(Book(null, "Head First Java"))
 
         // when
         bookService.loanBook(BookLoanRequest(user.name, book.name))
@@ -68,7 +68,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBookFailTest() {
         // given
         val user = userRepository.save(User("바트", 20))
-        val book = bookRepository.save(Book("Head First Java"))
+        val book = bookRepository.save(Book(null, "Head First Java"))
         userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
         val request = BookLoanRequest("바트", "Head First Java")
 
@@ -83,7 +83,7 @@ class BookServiceTest @Autowired constructor(
     fun returnBookTest() {
         // given
         val user = userRepository.save(User("바트", 20))
-        val book = bookRepository.save(Book("Head First Java"))
+        val book = bookRepository.save(Book(null, "Head First Java"))
         userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
         val request = BookReturnRequest(user.name, book.name)
 
