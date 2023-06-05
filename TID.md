@@ -29,3 +29,6 @@
     - 섹션2 > 11강. Kotlin 리팩토링 계획 세우기 학습 완료
     - 섹션2 > 12강. 도메인 계층을 Kotlin으로 변경하기 - Book.java 학습 완료
         - Book.java -> Book.kt로 변경
+- 2023.06.05
+    - 섹션2 > 13강. 도메인 계층을 Kotlin으로 변경하기 - UserLoanHistory.java, User.java 학습 완료
+        - 모든 도메인 계층을 Kotlin으로 변경

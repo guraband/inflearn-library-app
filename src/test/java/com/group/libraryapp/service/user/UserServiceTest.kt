@@ -42,8 +42,8 @@ class UserServiceTest @Autowired constructor(
         // given
         userRepository.saveAll(
             listOf(
-                User("바트", 20),
-                User("리사", null),
+                User(null, "바트", 20),
+                User(null, "리사", null),
             )
         )
 
@@ -59,8 +59,8 @@ class UserServiceTest @Autowired constructor(
     @Test
     fun updateUserNameTest() {
         // given
-        val user = userRepository.save(User("호머", 50))
-        val request = UserUpdateRequest(user.id, "호머J")
+        val user = userRepository.save(User(null, "호머", 50))
+        val request = UserUpdateRequest(user.id!!, "호머J")
 
         // when
         userService.updateUserName(request)
@@ -74,7 +74,7 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저 삭제 테스트")
     fun deleteUserTest() {
         // given
-        userRepository.save(User("마지", null))
+        userRepository.save(User(null, "마지", null))
 
         // when
         userService.deleteUser("마지")

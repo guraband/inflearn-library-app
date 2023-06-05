@@ -49,7 +49,7 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("책 대여 테스트")
     fun loanBookTest() {
         // given
-        val user = userRepository.save(User("바트", 20))
+        val user = userRepository.save(User(null, "바트", 20))
         val book = bookRepository.save(Book(null, "Head First Java"))
 
         // when
@@ -67,9 +67,16 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("중복 대출시 에러 발생 테스트")
     fun loanBookFailTest() {
         // given
-        val user = userRepository.save(User("바트", 20))
+        val user = userRepository.save(User(null, "바트", 20))
         val book = bookRepository.save(Book(null, "Head First Java"))
-        userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
+        userLoanHistoryRepository.save(
+            UserLoanHistory(
+                null,
+                user,
+                book.name,
+                false
+            )
+        )
         val request = BookLoanRequest("바트", "Head First Java")
 
         // when & then
@@ -82,9 +89,16 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("반납 테스트")
     fun returnBookTest() {
         // given
-        val user = userRepository.save(User("바트", 20))
+        val user = userRepository.save(User(null, "바트", 20))
         val book = bookRepository.save(Book(null, "Head First Java"))
-        userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
+        userLoanHistoryRepository.save(
+            UserLoanHistory(
+                null,
+                user,
+                book.name,
+                false
+            )
+        )
         val request = BookReturnRequest(user.name, book.name)
 
         // when
