@@ -32,3 +32,7 @@
 - 2023.06.05
     - 섹션2 > 13강. 도메인 계층을 Kotlin으로 변경하기 - UserLoanHistory.java, User.java 학습 완료
         - 모든 도메인 계층을 Kotlin으로 변경
+- 2023.06.06
+    - 섹션2 > 14강. Kotlin과 JPA를 함께 사용할 때 이야기거리 3가지 학습 완료
+    - 섹션2 > 15강. 리포지토리를 Kotlin으로 변경하기 학습 완료
+        - Repository interface들을 Kotlin으로 변경
