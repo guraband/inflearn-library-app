@@ -36,3 +36,7 @@
     - 섹션2 > 14강. Kotlin과 JPA를 함께 사용할 때 이야기거리 3가지 학습 완료
     - 섹션2 > 15강. 리포지토리를 Kotlin으로 변경하기 학습 완료
         - Repository interface들을 Kotlin으로 변경
+- 2023.06.07
+    - 섹션2 > 16강. 서비스 계층을 Kotlin으로 변경하기 - UserService.java 학습 완료
+        - org.jetbrains.kotlin.plugin.spring 플러그인 추가
+            - service의 transactional을 사용하려면 class와 해당 메소드를 open 해줘야하는데 이 플러그인이 해당 기능을 수행해줌
