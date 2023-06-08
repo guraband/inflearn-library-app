@@ -40,3 +40,8 @@
     - 섹션2 > 16강. 서비스 계층을 Kotlin으로 변경하기 - UserService.java 학습 완료
         - org.jetbrains.kotlin.plugin.spring 플러그인 추가
             - service의 transactional을 사용하려면 class와 해당 메소드를 open 해줘야하는데 이 플러그인이 해당 기능을 수행해줌
+- 2023.06.08
+    - 섹션2 > 17강. BookService.java를 Kotlin으로 변경하고 Optional 제거하기 학습 완료
+        - BookService를 Kotlin으로 변경
+        - Optional 제거
+        - CrudRepository<T, ID>.findByIdOrThrow 확장 함수 선언
