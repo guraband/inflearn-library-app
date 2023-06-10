@@ -51,3 +51,5 @@
 - 2023.06.10
     - 섹션2 > 19강. Controller 계층을 Kotlin으로 변경하기 학습 완료
         - controller를 kotlin으로 변경
+    - 섹션2> 20강. 리팩토링 끝! 다음으로! 학습 완료
+        - java -> kotlin 변경 완료 
