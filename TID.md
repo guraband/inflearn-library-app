@@ -48,3 +48,6 @@
 - 2023.06.09
     - 섹션2 > 18강. DTO를 Kotlin으로 변경하기 학습 완료
         - dto class들을 모두 Kotlin으로 변경
+- 2023.06.10
+    - 섹션2 > 19강. Controller 계층을 Kotlin으로 변경하기 학습 완료
+        - controller를 kotlin으로 변경
