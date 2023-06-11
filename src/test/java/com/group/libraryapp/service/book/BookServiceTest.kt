@@ -34,7 +34,7 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("책 등록 테스트")
     fun saveBookTest() {
         // given
-        val request = BookRequest("Head First Java")
+        val request = BookRequest("Head First Java", "COMPUTER")
 
         // when
         bookService.saveBook(request)
@@ -43,6 +43,7 @@ class BookServiceTest @Autowired constructor(
         val books = bookRepository.findAll()
         assertThat(books).hasSize(1)
         assertThat(books[0].name).isEqualTo("Head First Java")
+        assertThat(books[0].type).isEqualTo("COMPUTER")
     }
 
     @Test
@@ -50,7 +51,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBookTest() {
         // given
         val user = userRepository.save(User(null, "바트", 20))
-        val book = bookRepository.save(Book(null, "Head First Java"))
+        val book = bookRepository.save(Book.fixture("Head First Java"))
 
         // when
         bookService.loanBook(BookLoanRequest(user.name, book.name))
@@ -68,7 +69,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBookFailTest() {
         // given
         val user = userRepository.save(User(null, "바트", 20))
-        val book = bookRepository.save(Book(null, "Head First Java"))
+        val book = bookRepository.save(Book.fixture("Head First Java"))
         userLoanHistoryRepository.save(
             UserLoanHistory(
                 null,
@@ -90,7 +91,7 @@ class BookServiceTest @Autowired constructor(
     fun returnBookTest() {
         // given
         val user = userRepository.save(User(null, "바트", 20))
-        val book = bookRepository.save(Book(null, "Head First Java"))
+        val book = bookRepository.save(Book.fixture("Head First Java"))
         userLoanHistoryRepository.save(
             UserLoanHistory(
                 null,
