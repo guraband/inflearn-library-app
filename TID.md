@@ -58,3 +58,6 @@
         - book에 type 추가, fixture 추가
     - 섹션3 > 22강. Enum Class를 활용해 책의 분야 리팩토링 하기 학습 완료
         - bookType을 enum으로 변경
+- 2023.06.12
+    - 섹션3 > 23강. Boolean에도 Enum 활용하기 - 책 반납 로직 수정 학습 완료
+        - 도서 대출 여부 정보를 boolean에서 enum으로 변경

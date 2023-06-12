@@ -7,6 +7,7 @@ import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
@@ -62,7 +63,7 @@ class BookServiceTest @Autowired constructor(
         assertThat(history).hasSize(1)
         assertThat(history[0].bookName).isEqualTo("Head First Java")
         assertThat(history[0].user.id).isEqualTo(user.id)
-        assertThat(history[0].isReturn).isFalse
+        assertThat(history[0].status).isEqualTo(UserLoanStatus.LOANED)
     }
 
     @Test
@@ -72,11 +73,9 @@ class BookServiceTest @Autowired constructor(
         val user = userRepository.save(User(null, "바트", 20))
         val book = bookRepository.save(Book.fixture("Head First Java"))
         userLoanHistoryRepository.save(
-            UserLoanHistory(
-                null,
+            UserLoanHistory.fixture(
                 user,
                 book.name,
-                false
             )
         )
         val request = BookLoanRequest("바트", "Head First Java")
@@ -94,11 +93,9 @@ class BookServiceTest @Autowired constructor(
         val user = userRepository.save(User(null, "바트", 20))
         val book = bookRepository.save(Book.fixture("Head First Java"))
         userLoanHistoryRepository.save(
-            UserLoanHistory(
-                null,
+            UserLoanHistory.fixture(
                 user,
                 book.name,
-                false
             )
         )
         val request = BookReturnRequest(user.name, book.name)
@@ -109,7 +106,7 @@ class BookServiceTest @Autowired constructor(
         // then
         val history = userLoanHistoryRepository.findAll()
         assertThat(history).hasSize(1)
-        assertThat(history[0].isReturn).isTrue
+        assertThat(history[0].status).isEqualTo(UserLoanStatus.RETURNED)
 
 
     }
