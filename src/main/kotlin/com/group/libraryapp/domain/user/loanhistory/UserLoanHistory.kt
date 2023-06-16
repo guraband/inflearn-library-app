@@ -14,6 +14,7 @@ class UserLoanHistory(
 
     val bookName: String,
 
+    @Enumerated(EnumType.STRING)
     var status: UserLoanStatus = UserLoanStatus.LOANED,
 ) {
     val isReturn: Boolean
