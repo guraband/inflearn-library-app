@@ -152,7 +152,29 @@ class BookServiceTest @Autowired constructor(
         assertCount(results, BookType.LANGUAGE, 1)
     }
 
+    @Test
+    @DisplayName("분야별 책 수를 확인 (쿼리 방식)")
+    fun getBookStatisticsTest2() {
+        // given
+        bookRepository.saveAll(
+            listOf(
+                Book.fixture("A", BookType.COMPUTER),
+                Book.fixture("B", BookType.COMPUTER),
+                Book.fixture("C", BookType.ECONOMY),
+                Book.fixture("D", BookType.LANGUAGE),
+            )
+        )
+
+        // when
+        val results = bookService.getBookStatistics2()
+
+        // then
+        assertCount(results, BookType.COMPUTER, 2)
+        assertCount(results, BookType.ECONOMY, 1)
+        assertCount(results, BookType.LANGUAGE, 1)
+    }
+
     private fun assertCount(results: List<BookStatResponse>, type: BookType, count: Int) {
-        assertThat(results.first { dto -> dto.type == type }.count).isEqualTo(count)
+        assertThat(results.first { dto -> dto.type == type }.count.toInt()).isEqualTo(count)
     }
 }
