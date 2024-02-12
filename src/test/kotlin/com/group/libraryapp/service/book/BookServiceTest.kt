@@ -4,13 +4,16 @@ import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
+import com.group.libraryapp.dto.book.request.BookReturnRequest
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -47,7 +50,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBookTest() {
         // given
         val user = userRepository.save(User("바트", 20))
-        val book = bookRepository.save(Book("Head First Java"))
+        val book = bookRepository.save(Book("Head First Java", null))
 
         // when
         bookService.loanBook(BookLoanRequest(user.name, book.name))
@@ -56,7 +59,40 @@ class BookServiceTest @Autowired constructor(
         val history = userLoanHistoryRepository.findAll()
         assertThat(history).hasSize(1)
         assertThat(history[0].bookName).isEqualTo("Head First Java")
-//        assertThat(history[0].user.id).isEqualTo(user.id)
-//        assertThat(history[0].status).isEqualTo(UserLoanStatus.LOANED)
+        assertThat(history[0].user.id).isEqualTo(user.id)
+        assertThat(history[0].isReturn).isFalse
+    }
+
+    @Test
+    @DisplayName("중복 대출시 에러 발생 테스트")
+    fun loanBookFailTest() {
+        // given
+        val user = userRepository.save(User("바트", 20))
+        val book = bookRepository.save(Book("Head First Java", null))
+        userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
+        val request = BookLoanRequest("바트", "Head First Java")
+
+        // when & then
+        assertThrows<IllegalArgumentException> {
+            bookService.loanBook(request)
+        }
+    }
+
+    @Test
+    @DisplayName("반납 테스트")
+    fun returnBookTest() {
+        // given
+        val user = userRepository.save(User("바트", 20))
+        val book = bookRepository.save(Book("Head First Java", null))
+        userLoanHistoryRepository.save(UserLoanHistory(user, book.name, false))
+        val request = BookReturnRequest(user.name, book.name)
+
+        // when
+        bookService.returnBook(request)
+
+        // then
+        val history = userLoanHistoryRepository.findAll()
+        assertThat(history).hasSize(1)
+        assertThat(history[0].isReturn).isTrue
     }
 }
